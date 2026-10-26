@@ -1,0 +1,73 @@
+/* Token di Pepe Nero Frosinone: copiati da BRAND-KIT.md. Contrasti misurati in fase 2 (vedi _build/contrasti.mjs). */
+@font-face { font-family: "Sofia Sans Extra Condensed"; src: url("../fonts/sofia-sans-extra-condensed-300-normal.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Sofia Sans Extra Condensed"; src: url("../fonts/sofia-sans-extra-condensed-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Sofia Sans"; src: url("../fonts/sofia-sans-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Sofia Sans"; src: url("../fonts/sofia-sans-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Sofia Sans"; src: url("../fonts/sofia-sans-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+
+:root {
+  /* fondi */
+  --pepe:          hsl(140 14% 8%);
+  --pepe-2:        hsl(140 10% 12%);
+  --pepe-3:        hsl(140 8% 17%);
+  --farina:        hsl(41 62% 93%);
+  --farina-2:      hsl(40 45% 88%);
+  --palladiana:    hsl(36 18% 82%);
+
+  /* testo */
+  --su-pepe:       hsl(41 50% 92%);
+  --su-pepe-muto:  hsl(40 14% 70%);
+  --inchiostro:    hsl(140 14% 10%);
+  --inchiostro-muto: hsl(140 6% 32%);
+
+  /* marchio */
+  --sugo:          hsl(359 52% 36%);
+  --sugo-hover:    hsl(359 56% 42%);
+  --sugo-active:   hsl(359 52% 30%);
+  --parete:        hsl(355 56% 30%);
+  --mattone:       hsl(26 60% 37%);
+  --mattone-chiaro: hsl(24 55% 62%);
+  --brace:         hsl(20 92% 58%);
+  --grigio-calice: hsl(66 4% 57%);
+
+  /* stato */
+  --ok:            hsl(140 45% 62%);
+  --errore:        hsl(4 80% 70%);
+  --focus:         var(--brace);
+
+  /* font */
+  --f-titoli: "Sofia Sans Extra Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-testo: "Sofia Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* scala */
+  --t-xs:  0.8rem;
+  --t-s:   0.9rem;
+  --t-m:   1rem;
+  --t-l:   1.25rem;
+  --t-xl:  clamp(1.56rem, 1.2rem + 1.5vw, 2.1rem);
+  --t-2xl: clamp(2.44rem, 1.6rem + 3.6vw, 3.75rem);
+  --t-3xl: clamp(3.8rem, 2rem + 8vw, 7.5rem);
+
+  /* spazi e raggi */
+  --s-1: 56px;
+  --s-2: 88px;
+  --s-3: 136px;
+  --bordo: 16px;
+  --r-pillola: 999px;
+  --r-card: 14px;
+  --r-foto: 4px;
+  --r-tessera: 22px;
+
+  /* moto */
+  --molla: cubic-bezier(0.16, 1, 0.3, 1);
+  --rapida: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* kit */
+  --kit-testo: var(--su-pepe);
+  --kit-sfondo: var(--pepe);
+  --kit-muto: var(--su-pepe-muto);
+  --kit-filetto: var(--pepe-3);
+  --kit-focus: var(--focus);
+  --kit-font: var(--f-testo);
+}
+@media (min-width: 768px) { :root { --bordo: 32px; } }

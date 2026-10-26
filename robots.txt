@@ -1,0 +1,17 @@
+# robots.txt di base.
+#
+# BOZZA (GitHub Pages, sottocartella): il file NON viene letto da Google in una sottocartella.
+# La protezione vera e' <meta name="robots" content="noindex, nofollow"> su ogni pagina (vedi head-snippet.html).
+# Si tiene comunque il blocco totale qui sotto, come seconda rete, e si toglie al lancio insieme al meta.
+#
+# AL LANCIO: cancellare le due righe "Disallow: /" e togliere il commento "BOZZA".
+# Il guaio classico e' pubblicare con dentro ancora il blocco usato in fase di prova.
+
+User-agent: *
+Disallow: /
+
+# --- VERSIONE DA LANCIO (decommentare, sostituire il dominio, cancellare il blocco sopra) ---
+# User-agent: *
+# Allow: /
+#
+# Sitemap: {{DOMINIO}}/sitemap.xml

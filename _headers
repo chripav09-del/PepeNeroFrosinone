@@ -1,0 +1,49 @@
+# ============================================================
+# _headers di base. Nella radice di quello che si pubblica, accanto a index.html.
+# Adattato da quello di Franco Pisanzio (verificato dal vivo su Cloudflare Pages il 10/09/2026
+# e rivisto il 29/09/2026).
+#
+# REGOLA CHE E' COSTATA: un percorso si dichiara UNA volta sola.
+# Due blocchi "/*" separati NON si sommano: il secondo sostituisce il primo, e CSP, HSTS, X-Frame-Options
+# spariscono in silenzio. Ogni header nuovo si aggiunge DENTRO il blocco "/*" qui sotto.
+#
+# DOVE FUNZIONA: Cloudflare Pages e Workers (static assets). GitHub Pages lo IGNORA:
+# sulle bozze in anteprima gli header NON ci sono, e' normale. Si provano dopo, sul dominio vero:
+#   curl -sI https://{{DOMINIO_SENZA_HTTPS}}/   e   python <skill pre-launch-audit>/scripts/controllo-live.py https://{{DOMINIO_SENZA_HTTPS}}
+# Su Workers il file _headers viene letto e non viene servito come pagina (documentazione Cloudflare).
+# NON metterlo in .assetsignore senza provarlo: non e' verificato che l'elenco non spenga anche le regole.
+#
+# CSP STRETTA: va bene perche' il kit non usa script scritti dentro l'HTML (vedi js/*.js a file).
+# Ogni servizio esterno aggiunto (mappa, statistiche, form su Worker, prenotazioni) va aggiunto alla
+# direttiva giusta, altrimenti il browser lo blocca in silenzio: ogni modulo dice quale riga aggiungere.
+# Dopo il lancio: console del browser senza violazioni CSP.
+#
+# ANTEPRIMA su *.pages.dev o *.workers.dev: aggiungere DENTRO il blocco "/*" la riga
+#   X-Robots-Tag: noindex, nofollow
+# (indentata come le altre, mai come riga commentata dentro il blocco) e TOGLIERLA al lancio sul dominio vero.
+# ============================================================
+
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests
+
+# L'HTML non si mette in cache, gli asset si' (se hanno ?v=NN nell'indirizzo; se cambiano senza versione, tenere cache breve).
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
